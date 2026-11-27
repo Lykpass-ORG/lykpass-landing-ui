@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: site.name,
     short_name: site.name,
-    description: site.description,
+    description: "AI-native event discovery and ticketing.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

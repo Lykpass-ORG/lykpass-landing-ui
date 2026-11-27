@@ -52,7 +52,8 @@ export function RevealObserver() {
           }
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+      // threshold 0 so even very tall blocks reveal as soon as their top edge enters.
+      { rootMargin: "0px 0px -6% 0px", threshold: 0 },
     );
     document.querySelectorAll<HTMLElement>("[data-reveal]:not([data-shown])").forEach((el) => io.observe(el));
     return () => io.disconnect();

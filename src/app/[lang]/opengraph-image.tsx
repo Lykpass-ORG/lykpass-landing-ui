@@ -1,10 +1,19 @@
 import { ImageResponse } from "next/og";
+import { hasLocale, locales } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 
-export const alt = "Lykpass: say what you feel like doing, get a real ticket.";
+export const alt = "Lykpass";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpengraphImage() {
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }));
+}
+
+export default async function OpengraphImage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const t = getDictionary(hasLocale(lang) ? lang : "en");
+
   return new ImageResponse(
     (
       <div
@@ -30,13 +39,11 @@ export default function OpengraphImage() {
           </svg>
           <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2 }}>lykpass</span>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", fontSize: 88, fontWeight: 800, lineHeight: 0.95, letterSpacing: -4 }}>
-          <span>Say what you feel like doing.</span>
-          <span style={{ color: "#ff5709" }}>Get a real ticket.</span>
+        <div style={{ display: "flex", flexDirection: "column", fontSize: 80, fontWeight: 800, lineHeight: 0.98, letterSpacing: -3 }}>
+          <span>{`${t.hero.l1} ${t.hero.l2}`}</span>
+          <span style={{ color: "#ff5709" }}>{t.hero.l3}</span>
         </div>
-        <div style={{ display: "flex", fontSize: 28, color: "#a9bdb6" }}>
-          AI event discovery and ticketing. Every price, date and seat checked against live records.
-        </div>
+        <div style={{ display: "flex", fontSize: 28, color: "#a9bdb6" }}>{t.meta.ogLine}</div>
       </div>
     ),
     size,

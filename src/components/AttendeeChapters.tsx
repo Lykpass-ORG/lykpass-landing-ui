@@ -2,51 +2,34 @@
 
 import { useEffect, useRef, useState } from "react";
 import { FeedScreen, QAScreen, ReminderScreen, TicketScreen } from "./PhoneScreens";
+import { useI18n } from "@/i18n/I18nProvider";
 
-const chapters = [
-  {
-    id: "feed",
-    title: "A feed that knows your weekend.",
-    body: "Save a few events and Lykpass learns your taste. Every pick says why it’s there. It only personalizes if you say yes, and you can reset it anytime.",
-    Screen: FeedScreen,
-  },
-  {
-    id: "qa",
-    title: "Ask the event anything.",
-    body: "Parking, dress code, age limits, door times. Answers come from the event’s own details, so you’re not stuck digging through a flyer.",
-    Screen: QAScreen,
-  },
-  {
-    id: "ticket",
-    title: "Tickets that bend with your plans.",
-    body: "Send a ticket to a friend in two taps. Ask about refunds and get the event’s actual policy, plus help filing a request. You confirm every step.",
-    Screen: TicketScreen,
-  },
-  {
-    id: "remind",
-    title: "Reminders that show up on time.",
-    body: "A nudge when it’s time to head out, your tickets ready for the gate, and a heads-up when doors open. Capped, so it never turns into noise.",
-    Screen: ReminderScreen,
-  },
-];
+const screens = [FeedScreen, QAScreen, TicketScreen, ReminderScreen];
 
 function Phone({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <div
-      className={`relative mx-auto aspect-[9/19] w-full max-w-[19rem] rounded-[2.8rem] bg-ink p-[10px] shadow-lift ${className}`}
+      className={`relative mx-auto aspect-[9/19] w-full max-w-[19rem] rounded-[2.8rem] bg-night p-[10px] shadow-lift ring-1 ring-white/10 ${className}`}
     >
-      <div className="relative h-full overflow-hidden rounded-[2.2rem] bg-white">
-        <div className="absolute left-1/2 top-2.5 z-10 h-6 w-24 -translate-x-1/2 rounded-full bg-ink" aria-hidden />
+      <div className="relative h-full overflow-hidden rounded-[2.2rem] bg-surface">
+        <div className="absolute left-1/2 top-2.5 z-10 h-6 w-24 -translate-x-1/2 rounded-full bg-night" aria-hidden />
         <div className="h-full pt-8">{children}</div>
       </div>
     </div>
   );
 }
 
+/** Desktop: text chapters scroll past a sticky phone. Phones: a swipeable carousel with synced dots. */
 export function AttendeeChapters() {
+  const { t } = useI18n();
+  const chapters = t.attendee.chapters;
   const [active, setActive] = useState(0);
+  const [slide, setSlide] = useState(0);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
+  const track = useRef<HTMLDivElement>(null);
+  const slides = useRef<(HTMLLIElement | null)[]>([]);
 
+  // Desktop: which chapter is in the middle of the screen.
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -60,33 +43,110 @@ export function AttendeeChapters() {
     return () => io.disconnect();
   }, []);
 
+  // Mobile: which slide is centred in the carousel.
+  useEffect(() => {
+    const root = track.current;
+    if (!root) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setSlide(Number((e.target as HTMLElement).dataset.index));
+        });
+      },
+      { root, threshold: 0.6 },
+    );
+    slides.current.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const goTo = (i: number) => {
+    const el = slides.current[i];
+    const root = track.current;
+    if (el && root) root.scrollTo({ left: el.offsetLeft - root.offsetLeft - 20, behavior: "smooth" });
+  };
+
   return (
-    <section aria-labelledby="attendee-title" className="bg-paper py-24 sm:py-36">
+    <section aria-labelledby="attendee-title" className="overflow-x-clip bg-paper py-20 sm:py-36">
       <div className="mx-auto max-w-[78rem] px-5 sm:px-8">
         <h2
           id="attendee-title"
           className="max-w-[44rem] text-[clamp(2.05rem,7vw,4.1rem)] font-extrabold leading-[0.98] text-ink"
           data-reveal
         >
-          Everything after <span className="text-brand">“I’m going.”</span>
+          {t.attendee.t1} <span className="text-brand">{t.attendee.t2}</span>
         </h2>
 
-        <div className="mt-16 grid gap-16 lg:mt-8 lg:grid-cols-[1fr_minmax(0,26rem)] lg:gap-24">
+        {/* Phones and small tablets */}
+        <div className="lg:hidden">
+          <div
+            ref={track}
+            className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-5 pb-4 [scrollbar-width:none] sm:-mx-8 sm:px-8 [&::-webkit-scrollbar]:hidden"
+            aria-roledescription="carousel"
+            data-lenis-prevent-wheel
+          >
+            <ul className="flex gap-4">
+              {chapters.map((c, i) => {
+                const Screen = screens[i] ?? FeedScreen;
+                return (
+                  <li
+                    key={c.title}
+                    ref={(el) => {
+                      slides.current[i] = el;
+                    }}
+                    data-index={i}
+                    aria-roledescription="slide"
+                    aria-label={`${i + 1} / ${chapters.length}`}
+                    className="w-[82vw] max-w-[24rem] shrink-0 snap-center rounded-[var(--radius-panel)] bg-tint p-5 sm:p-6"
+                  >
+                    <h3 className="text-[1.35rem] font-extrabold leading-[1.08] text-ink">{c.title}</h3>
+                    <p className="mt-2.5 text-[0.98rem] leading-relaxed text-mute">{c.body}</p>
+                    <div className="mt-6">
+                      <Phone className="max-w-[14.5rem]">
+                        <Screen />
+                      </Phone>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="mt-4 flex items-center justify-center gap-2" role="tablist" aria-label={t.attendee.swipe}>
+            {chapters.map((c, i) => (
+              <button
+                key={c.title}
+                type="button"
+                role="tab"
+                aria-selected={slide === i}
+                aria-label={c.title}
+                onClick={() => goTo(i)}
+                className="grid h-8 w-8 place-items-center"
+              >
+                <span
+                  className={`block h-2 rounded-full transition-[width,background-color] duration-500 ease-[var(--ease-out-expo)] ${
+                    slide === i ? "w-7 bg-brand" : "w-2 bg-line"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop */}
+        <div className="mt-8 hidden gap-24 lg:grid lg:grid-cols-[1fr_minmax(0,26rem)]">
           <div>
             {chapters.map((c, i) => (
               <div
-                key={c.id}
+                key={c.title}
                 ref={(el) => {
                   refs.current[i] = el;
                 }}
                 data-index={i}
-                className="flex flex-col justify-center gap-10 py-8 lg:min-h-[80vh] lg:py-0"
+                className="flex min-h-[80vh] flex-col justify-center"
               >
                 <div
-                  className={`transition-opacity duration-700 ease-[var(--ease-out-expo)] lg:max-w-[30rem] ${
-                    active === i ? "lg:opacity-100" : "lg:opacity-30"
+                  className={`max-w-[30rem] transition-opacity duration-700 ease-[var(--ease-out-expo)] ${
+                    active === i ? "opacity-100" : "opacity-30"
                   }`}
-                  data-reveal
                 >
                   <div className="mb-5 h-[3px] w-full max-w-[12rem] overflow-hidden rounded-full bg-line" aria-hidden>
                     <div
@@ -98,30 +158,25 @@ export function AttendeeChapters() {
                   <h3 className="text-[clamp(1.6rem,3vw,2.3rem)] font-extrabold leading-[1.05] text-ink">{c.title}</h3>
                   <p className="mt-4 text-[1.08rem] leading-relaxed text-mute">{c.body}</p>
                 </div>
-                <div className="lg:hidden" data-reveal>
-                  <Phone className="max-w-[17rem]">
-                    <c.Screen />
-                  </Phone>
-                </div>
               </div>
             ))}
           </div>
 
-          <div className="hidden lg:block">
-            <div className="sticky top-[calc(50vh-19.5rem)]">
+          <div>
+            <div className="sticky top-[calc(50vh-20rem)]">
               <div className="relative">
                 <div className="absolute -inset-x-10 inset-y-16 -z-10 rounded-[3rem] bg-tint" aria-hidden />
                 <Phone>
                   <div className="relative h-full">
-                    {chapters.map((c, i) => (
+                    {screens.map((Screen, i) => (
                       <div
-                        key={c.id}
+                        key={i}
                         aria-hidden={active !== i}
                         className={`absolute inset-0 transition-[opacity,transform,filter] duration-700 ease-[var(--ease-out-expo)] ${
                           active === i ? "opacity-100 blur-0" : "pointer-events-none translate-y-4 opacity-0 blur-sm"
                         }`}
                       >
-                        <c.Screen />
+                        <Screen />
                       </div>
                     ))}
                   </div>
