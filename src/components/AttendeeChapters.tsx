@@ -65,7 +65,7 @@ export function AttendeeChapters() {
       <div className="mx-auto max-w-[78rem] px-5 sm:px-8">
         <h2
           id="attendee-title"
-          className="max-w-[44rem] text-[clamp(2.3rem,5vw,4.1rem)] font-extrabold leading-[0.98] text-ink"
+          className="max-w-[44rem] text-[clamp(2.05rem,7vw,4.1rem)] font-extrabold leading-[0.98] text-ink"
           data-reveal
         >
           Everything after <span className="text-brand">“I’m going.”</span>

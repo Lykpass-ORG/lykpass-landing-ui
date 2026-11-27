@@ -36,7 +36,7 @@ export function LiveEvents() {
     <section id="live" aria-labelledby="live-title" className="on-ink bg-ink py-24 text-white sm:py-36">
       <div className="mx-auto grid max-w-[78rem] items-center gap-16 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20">
         <div>
-          <h2 id="live-title" className="text-[clamp(2.3rem,5vw,4.1rem)] font-extrabold leading-[0.98]" data-reveal>
+          <h2 id="live-title" className="text-[clamp(2.05rem,7vw,4.1rem)] font-extrabold leading-[0.98]" data-reveal>
             Online event?
             <br />
             <span className="text-brand">Your ticket is the way in.</span>

@@ -7,7 +7,19 @@ import Lenis from "lenis";
 export function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({ lerp: 0.085, smoothWheel: true, anchors: { offset: -72 } });
+    // Wheel and trackpad glide with an eased lerp. Touch keeps the phone's own
+    // momentum scrolling, which is already smooth and feels native.
+    const lenis = new Lenis({
+      lerp: 0.075,
+      wheelMultiplier: 0.95,
+      smoothWheel: true,
+      syncTouch: false,
+      anchors: {
+        offset: -72,
+        duration: 1.5,
+        easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+      },
+    });
     let raf = 0;
     const loop = (t: number) => {
       lenis.raf(t);

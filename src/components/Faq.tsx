@@ -20,7 +20,7 @@ export function Faq() {
       />
       <div className="mx-auto grid max-w-[78rem] gap-12 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div>
-          <h2 id="faq-title" className="text-[clamp(2.3rem,5vw,4.1rem)] font-extrabold leading-[0.98] text-ink lg:sticky lg:top-28" data-reveal>
+          <h2 id="faq-title" className="text-[clamp(2.05rem,7vw,4.1rem)] font-extrabold leading-[0.98] text-ink lg:sticky lg:top-28" data-reveal>
             Questions,
             <br />
             answered.

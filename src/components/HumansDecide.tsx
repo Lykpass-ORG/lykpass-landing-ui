@@ -11,7 +11,7 @@ export function HumansDecide() {
     <section aria-labelledby="humans-title" className="bg-paper py-24 sm:py-36">
       <div className="mx-auto max-w-[78rem] px-5 sm:px-8">
         <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
-          <h2 id="humans-title" className="text-[clamp(2.3rem,5vw,4.1rem)] font-extrabold leading-[0.98] text-ink" data-reveal>
+          <h2 id="humans-title" className="text-[clamp(2.05rem,7vw,4.1rem)] font-extrabold leading-[0.98] text-ink" data-reveal>
             AI helps.
             <br />
             <span className="text-brand">People decide.</span>

@@ -26,7 +26,7 @@ export function Hero() {
       aria-labelledby="hero-title"
       className="on-ink relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink text-white"
     >
-      <motion.div className="absolute inset-0 -z-10" style={reduce ? undefined : { scale: imgScale, y: imgY }}>
+      <motion.div className="absolute inset-0 -z-10 will-change-transform" style={reduce ? undefined : { scale: imgScale, y: imgY }}>
         <Image
           src={heroImg}
           alt="A festival crowd with hands raised in warm orange stage light"
@@ -52,7 +52,7 @@ export function Hero() {
             initial={reduce ? false : { opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.2, ease }}
-            className="text-[clamp(2.9rem,min(8.4vw,11.5vh),6rem)] font-extrabold leading-[0.92]"
+            className="text-[clamp(1.9rem,min(10.2vw,11.5vh),6rem)] font-extrabold leading-[0.98] sm:leading-[0.92]"
           >
             Say what you
             <br /> feel like doing.

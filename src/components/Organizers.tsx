@@ -57,7 +57,7 @@ export function Organizers() {
     <section id="organizers" aria-labelledby="org-title" className="bg-tint py-24 sm:py-36">
       <div className="mx-auto max-w-[78rem] px-5 sm:px-8">
         <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-end">
-          <h2 id="org-title" className="text-[clamp(2.3rem,5vw,4.1rem)] font-extrabold leading-[0.98] text-ink" data-reveal>
+          <h2 id="org-title" className="text-[clamp(2.05rem,7vw,4.1rem)] font-extrabold leading-[0.98] text-ink" data-reveal>
             For organizers: one sentence to a <span className="text-brand">ready-to-publish</span> event.
           </h2>
           <p className="max-w-[30rem] text-[1.1rem] leading-relaxed text-mute lg:pb-2" data-reveal>

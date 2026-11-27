@@ -11,6 +11,7 @@ import { Faq } from "@/components/Faq";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
 import { RevealObserver } from "@/components/SmoothScroll";
+import { ExpandOnScroll } from "@/components/ExpandOnScroll";
 
 export default function Home() {
   return (
@@ -25,11 +26,15 @@ export default function Home() {
       <main id="main">
         <Hero />
         <AskDemo />
-        <TrustPromise />
+        <ExpandOnScroll>
+          <TrustPromise />
+        </ExpandOnScroll>
         <AttendeeChapters />
         <PhotoBreak />
         <Organizers />
-        <LiveEvents />
+        <ExpandOnScroll under="bg-tint">
+          <LiveEvents />
+        </ExpandOnScroll>
         <HumansDecide />
         <Faq />
         <FinalCta />

@@ -7,7 +7,7 @@ export function FinalCta() {
     <section id="early-access" aria-labelledby="cta-title" className="bg-paper px-3 pb-3 sm:px-5 sm:pb-5">
       <div className="on-ink relative mx-auto grid max-w-[90rem] grid-cols-1 overflow-hidden rounded-[36px] bg-ink text-white lg:grid-cols-[1.1fr_1fr]">
         <div className="relative z-10 flex flex-col justify-center px-6 py-16 sm:px-12 sm:py-24 lg:px-16 xl:px-20">
-          <h2 id="cta-title" className="text-[clamp(2.4rem,5.2vw,4.4rem)] font-extrabold leading-[0.98]" data-reveal>
+          <h2 id="cta-title" className="text-[clamp(2.1rem,7.2vw,4.4rem)] font-extrabold leading-[0.98]" data-reveal>
             Be first in when
             <br />
             <span className="text-brand">Lykpass opens.</span>

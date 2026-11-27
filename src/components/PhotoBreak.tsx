@@ -20,7 +20,7 @@ export function PhotoBreak() {
         style={reduce ? undefined : { clipPath: clip }}
         className="relative h-[80svh] min-h-[32rem] overflow-hidden bg-ink"
       >
-        <motion.div style={reduce ? undefined : { y }} className="absolute -inset-y-[10%] inset-x-0">
+        <motion.div style={reduce ? undefined : { y }} className="absolute -inset-y-[10%] inset-x-0 will-change-transform">
           <Image
             src={festival}
             alt="A packed outdoor festival crowd facing a lit stage at night"
@@ -34,7 +34,7 @@ export function PhotoBreak() {
         <div className="absolute inset-x-0 bottom-0 mx-auto max-w-[78rem] px-5 pb-12 sm:px-8 sm:pb-16">
           <h2
             id="break-title"
-            className="max-w-[48rem] text-[clamp(2.2rem,5.4vw,4.4rem)] font-extrabold leading-[1] text-white"
+            className="max-w-[48rem] text-[clamp(2rem,7vw,4.4rem)] font-extrabold leading-[1] text-white"
             data-reveal
           >
             Less scrolling for plans.

@@ -66,23 +66,38 @@ const steps = [
   },
 ];
 
+type Stage = { typed: number; chipCount: number; cardCount: number; stepIdx: number };
+
+function stageAt(prog: number): Stage {
+  return {
+    typed: Math.round(Math.min(1, prog / 0.26) * QUERY.length),
+    chipCount: Math.floor(Math.max(0, Math.min(1, (prog - 0.28) / 0.2)) * (chips.length + 0.99)),
+    cardCount: Math.floor(Math.max(0, Math.min(1, (prog - 0.5) / 0.32)) * (events.length + 0.99)),
+    stepIdx: prog < 0.28 ? 0 : prog < 0.5 ? 1 : 2,
+  };
+}
+
+function sameStage(a: Stage, b: Stage) {
+  return a.typed === b.typed && a.chipCount === b.chipCount && a.cardCount === b.cardCount && a.stepIdx === b.stepIdx;
+}
+
 export function AskDemo() {
   const ref = useRef<HTMLElement>(null);
   const desktop = useMedia("(min-width: 1024px)");
   const reduce = useMedia("(prefers-reduced-motion: reduce)");
   const pinned = desktop && !reduce;
-  const [p, setP] = useState(1);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const [stage, setStage] = useState(() => stageAt(1));
 
+  // Re-render only when a visible step changes (a character, chip or card),
+  // not on every scroll frame.
   useMotionValueEvent(scrollYProgress, "change", (v) => {
-    if (pinned) setP(v);
+    if (!pinned) return;
+    const next = stageAt(v);
+    setStage((s) => (sameStage(s, next) ? s : next));
   });
 
-  const prog = pinned ? p : 1;
-  const typed = Math.round(Math.min(1, prog / 0.26) * QUERY.length);
-  const chipCount = Math.floor(Math.max(0, Math.min(1, (prog - 0.28) / 0.2)) * (chips.length + 0.99));
-  const cardCount = Math.floor(Math.max(0, Math.min(1, (prog - 0.5) / 0.32)) * (events.length + 0.99));
-  const stepIdx = prog < 0.28 ? 0 : prog < 0.5 ? 1 : 2;
+  const { typed, chipCount, cardCount, stepIdx } = pinned ? stage : stageAt(1);
 
   return (
     <section
@@ -94,7 +109,7 @@ export function AskDemo() {
       <div className={`${pinned ? "sticky top-0 flex h-screen items-center" : "py-24 sm:py-32"}`}>
         <div className="mx-auto grid w-full max-w-[78rem] gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div className="flex flex-col justify-center">
-            <h2 id="ask-title" className="text-[clamp(2.3rem,5vw,4.1rem)] font-extrabold leading-[0.98] text-ink" data-reveal>
+            <h2 id="ask-title" className="text-[clamp(2.05rem,7vw,4.1rem)] font-extrabold leading-[0.98] text-ink" data-reveal>
               Plain words in.
               <br />
               <span className="text-brand">Real events out.</span>

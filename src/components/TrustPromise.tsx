@@ -49,7 +49,7 @@ export function TrustPromise() {
         <div ref={ref}>
           <h2
             id="promise-title"
-            className="max-w-[60rem] text-[clamp(2.2rem,5.6vw,4.6rem)] font-extrabold leading-[1.02]"
+            className="max-w-[60rem] text-[clamp(2rem,7vw,4.6rem)] font-extrabold leading-[1.02]"
             aria-label={statement}
           >
             <span aria-hidden>
