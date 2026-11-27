@@ -126,13 +126,18 @@ body {
   color: var(--ink);
 }
 
-:focus-visible {
-  outline: 2px solid var(--brand-ink);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-.on-ink :focus-visible {
-  outline-color: var(--brand);
+/*
+  Outlines follow each element's own border-radius, so pills keep their shape when focused.
+  Kept in the base layer so component utilities (e.g. the email pill's own ring) can override it.
+*/
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--brand-ink);
+    outline-offset: 3px;
+  }
+  .on-ink :focus-visible {
+    outline-color: var(--brand);
+  }
 }
 
 input {

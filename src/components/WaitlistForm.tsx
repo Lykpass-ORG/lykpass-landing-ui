@@ -68,7 +68,7 @@ export function WaitlistForm({ withRole = false, className = "" }: Props) {
         </fieldset>
       )}
       <div
-        className={`flex w-full min-w-0 max-w-[34rem] items-center gap-1.5 rounded-full bg-surface p-1.5 shadow-lift ring-1 ${
+        className={`flex w-full min-w-0 max-w-[34rem] items-center gap-1.5 rounded-full bg-surface p-1.5 shadow-lift ring-1 transition-[box-shadow] duration-300 ease-[var(--ease-out-expo)] has-[input:focus]:ring-[3px] has-[input:focus]:ring-brand/70 ${
           state.status === "error" ? "ring-2 ring-brand" : "ring-white/15"
         }`}
       >
@@ -86,12 +86,12 @@ export function WaitlistForm({ withRole = false, className = "" }: Props) {
           placeholder={t.form.placeholder}
           aria-invalid={state.status === "error"}
           aria-describedby={msgId}
-          className="w-0 min-w-0 flex-1 bg-transparent px-3 py-3 text-[1rem] text-ink placeholder:text-mute focus:outline-none sm:px-4"
+          className="w-0 min-w-0 flex-1 bg-transparent px-3 py-3 text-[1rem] text-ink placeholder:text-mute focus:outline-none focus-visible:outline-none sm:px-4"
         />
         <button
           type="submit"
           disabled={pending}
-          className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-4 py-3 text-[0.95rem] font-semibold text-on-brand transition-[background-color,transform] duration-300 ease-[var(--ease-out-expo)] hover:bg-brand-deep active:scale-[0.97] disabled:cursor-wait disabled:opacity-80 sm:px-6"
+          className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-4 py-3 text-[0.95rem] font-semibold text-on-brand transition-[background-color,transform] duration-300 ease-[var(--ease-out-expo)] hover:bg-brand-deep focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-[0.97] disabled:cursor-wait disabled:opacity-80 sm:px-6"
         >
           {pending ? (
             <>

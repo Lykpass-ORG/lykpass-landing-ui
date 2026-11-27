@@ -37,26 +37,53 @@ export function SmoothScroll() {
 }
 
 /**
- * Drives every [data-reveal] element with one IntersectionObserver.
- * Rendered last inside the page, so its effect runs only after the page
- * segment has hydrated and the data-shown attribute never races React.
+ * Reveals every [data-reveal] element once its top edge enters the viewport.
+ *
+ * Uses a throttled scroll check rather than IntersectionObserver: browsers pause
+ * or skip IntersectionObserver in background tabs, some in-app webviews and
+ * power-saving modes, which left whole sections invisible. Elements already
+ * scrolled past (deep links, restored scroll) are shown at once.
+ *
+ * Rendered last inside the page, so it runs only after the page has hydrated
+ * and the data-shown attribute never races React.
  */
 export function RevealObserver() {
   useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            (e.target as HTMLElement).dataset.shown = "true";
-            io.unobserve(e.target);
-          }
+    let pending = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]:not([data-shown])"));
+    let last = 0;
+    let trailing = 0;
+
+    const check = () => {
+      last = performance.now();
+      const line = window.innerHeight * 0.94;
+      pending = pending.filter((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < line) {
+          el.dataset.shown = "true";
+          return false;
         }
-      },
-      // threshold 0 so even very tall blocks reveal as soon as their top edge enters.
-      { rootMargin: "0px 0px -6% 0px", threshold: 0 },
-    );
-    document.querySelectorAll<HTMLElement>("[data-reveal]:not([data-shown])").forEach((el) => io.observe(el));
-    return () => io.disconnect();
+        return true;
+      });
+      if (!pending.length) stop();
+    };
+
+    // At most one check every 60ms while scrolling, plus one after scrolling settles.
+    const onScroll = () => {
+      window.clearTimeout(trailing);
+      if (performance.now() - last > 60) check();
+      trailing = window.setTimeout(check, 80);
+    };
+
+    const stop = () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.clearTimeout(trailing);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    check();
+    return stop;
   }, []);
 
   return null;

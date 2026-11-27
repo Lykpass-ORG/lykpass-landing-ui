@@ -24,7 +24,7 @@ export function TrustPromise() {
   const words = t.promise.statement.split(" ");
 
   return (
-    <section aria-labelledby="promise-title" className="on-ink relative overflow-hidden bg-night py-24 text-white sm:py-40">
+    <section aria-labelledby="promise-title" className="on-ink relative overflow-hidden bg-night py-20 text-white sm:py-28 lg:py-32">
       <div className="relative mx-auto max-w-[78rem] px-5 sm:px-8">
         <div ref={ref}>
           <h2
@@ -43,12 +43,12 @@ export function TrustPromise() {
               ))}
             </span>
           </h2>
-          <p className="mt-8 max-w-[38rem] text-[1.05rem] leading-relaxed text-mute-on-ink sm:text-[1.1rem]" data-reveal>
+          <p className="mt-6 max-w-[38rem] text-[1.05rem] leading-relaxed text-mute-on-ink sm:text-[1.1rem]" data-reveal>
             {t.promise.body}
           </p>
         </div>
 
-        <dl className="mt-16 grid gap-x-10 gap-y-10 border-t border-white/12 pt-10 sm:mt-20 sm:grid-cols-2 sm:pt-12 lg:grid-cols-4">
+        <dl className="mt-12 grid gap-x-10 gap-y-10 border-t border-white/12 pt-10 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
           {t.promise.facts.map((f, i) => {
             const Icon = icons[i] ?? LifeBuoy;
             return (
