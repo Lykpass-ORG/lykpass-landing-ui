@@ -100,7 +100,7 @@ export function AskDemo() {
           <div className="relative min-w-0" data-reveal>
             <div className="rounded-[var(--radius-panel)] bg-night p-2.5 shadow-lift ring-1 ring-white/5 sm:p-4">
               <div className="flex items-start gap-3 rounded-[20px] bg-surface px-4 py-3.5 sm:items-center sm:px-5 sm:py-4">
-                <Boron size={28} thinking={typed < a.query.length} className="-mt-0.5 sm:mt-0" />
+                <Boron size={34} delay={-3} thinking={typed < a.query.length} className="-my-1" />
                 <p className="min-h-[1.5em] text-[0.98rem] font-medium text-ink sm:text-[1.1rem]" aria-label={`${a.queryLabel}: ${a.query}`}>
                   <span aria-hidden>
                     {a.query.slice(0, typed)}

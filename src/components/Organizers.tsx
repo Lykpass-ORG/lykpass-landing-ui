@@ -86,7 +86,7 @@ export function Organizers() {
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="inline-flex items-center gap-2 rounded-full bg-tint px-3 py-1.5 text-[0.78rem] font-semibold text-brand-ink">
-                <Boron size={18} /> {o.draftBadge}
+                <Boron size={22} delay={-6} className="-my-1" /> {o.draftBadge}
               </p>
               <p className="text-[0.8rem] text-mute">{o.sample}</p>
             </div>

@@ -1,21 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="256" height="256">
   <title>Boron, the Lykpass AI assistant</title>
-  
-  <path d="M24 8V4.2" stroke="#ff5709" stroke-width="2.4" stroke-linecap="round"/>
-  <circle cx="24" cy="3.2" r="2.6" fill="#ff8a52">
-  </circle>
-  <path d="M16 8H32A12 12 0 0 1 44 20V20.5A3.5 3.5 0 0 0 44 27.5V28A12 12 0 0 1 32 40H16A12 12 0 0 1 4 28V27.5A3.5 3.5 0 0 0 4 20.5V20A12 12 0 0 1 16 8Z" fill="#ff5709"/>
-  <path d="M12 11.5H36" stroke="#fff" stroke-opacity=".28" stroke-width="1.6" stroke-linecap="round"/>
+  <defs>
+    <radialGradient id="skin" cx="38%" cy="30%" r="78%">
+      <stop offset="0%" stop-color="#ff9a5c"/>
+      <stop offset="48%" stop-color="#ff5f14"/>
+      <stop offset="100%" stop-color="#d93f00"/>
+    </radialGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
   <g>
+    <path d="M24 4.5C35.2 4.5 43.6 15.6 43.6 27.4C43.6 38.2 35.2 45 24 45C12.8 45 4.4 38.2 4.4 27.4C4.4 15.6 12.8 4.5 24 4.5Z" fill="url(#skin)"/>
+    <path d="M9.2 35.6C12.4 40.6 17.6 43.2 24 43.2C30.4 43.2 35.6 40.6 38.8 35.6" fill="none" stroke="#ffb07a" stroke-opacity=".45" stroke-width="1.1" stroke-linecap="round"/>
+    <ellipse cx="17.2" cy="12.6" rx="6.6" ry="3.6" fill="url(#sheen)" transform="rotate(-24 17.2 12.6)"/>
     <g>
-      
-        values="1 0 0 1 0 0;1 0 0 1 0 0;1 0 0 .12 0 20.02;1 0 0 1 0 0;1 0 0 .12 0 20.02;1 0 0 1 0 0"
-        keyTimes="0;.88;.9;.92;.95;.97" calcMode="discrete" dur="5.2s" repeatCount="indefinite"/>
-      <rect x="15.5" y="17.5" width="5" height="10.5" rx="2.5" fill="#0e2622"/>
-      <rect x="27.5" y="17.5" width="5" height="10.5" rx="2.5" fill="#0e2622"/>
-      <circle cx="17.2" cy="19.6" r="1" fill="#fff" fill-opacity=".9"/>
-      <circle cx="29.2" cy="19.6" r="1" fill="#fff" fill-opacity=".9"/>
+      <ellipse cx="11.6" cy="31.4" rx="2.9" ry="1.7" fill="#c42f00" fill-opacity=".32"/>
+      <ellipse cx="36.4" cy="31.4" rx="2.9" ry="1.7" fill="#c42f00" fill-opacity=".32"/>
+      <g>
+        <g>
+          <rect x="15" y="19.6" width="5.2" height="10.8" rx="2.6" fill="#0e2622"/>
+          <rect x="27.8" y="19.6" width="5.2" height="10.8" rx="2.6" fill="#0e2622"/>
+          <circle cx="16.8" cy="21.9" r="1.15" fill="#fff"/>
+          <circle cx="29.6" cy="21.9" r="1.15" fill="#fff"/>
+          <circle cx="18.6" cy="28" r=".5" fill="#fff" fill-opacity=".55"/>
+          <circle cx="31.4" cy="28" r=".5" fill="#fff" fill-opacity=".55"/>
+        </g>
+      </g>
+      <g>
+        <path d="M20.4 34.6Q24 37.6 27.6 34.6" fill="none" stroke="#0e2622" stroke-width="1.9" stroke-linecap="round"/>
+      </g>
     </g>
   </g>
-  <path d="M21 32.2Q24 34.4 27 32.2" fill="none" stroke="#0e2622" stroke-width="1.8" stroke-linecap="round"/>
 </svg>

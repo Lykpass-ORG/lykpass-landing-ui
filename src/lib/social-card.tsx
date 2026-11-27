@@ -4,8 +4,8 @@ import { ImageResponse } from "next/og";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 
 // Same outline as the Boron component; duplicated because this module renders on the server only.
-const BORON_BODY =
-  "M16 8H32A12 12 0 0 1 44 20V20.5A3.5 3.5 0 0 0 44 27.5V28A12 12 0 0 1 32 40H16A12 12 0 0 1 4 28V27.5A3.5 3.5 0 0 0 4 20.5V20A12 12 0 0 1 16 8Z";
+const BORON_EGG =
+  "M24 4.5C35.2 4.5 43.6 15.6 43.6 27.4C43.6 38.2 35.2 45 24 45C12.8 45 4.4 38.2 4.4 27.4C4.4 15.6 12.8 4.5 24 4.5Z";
 
 export const cardSize = { width: 1200, height: 630 };
 
@@ -53,18 +53,26 @@ function Mark({ size = 44 }: { size?: number }) {
   );
 }
 
-/** Boron, drawn statically (the card is a still image, so no blink). */
-function BoronStill({ size = 34 }: { size?: number }) {
+/** Boron, drawn statically (the card is a still image, so no motion). */
+function BoronStill({ size = 38 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 48 48">
-      <path d="M24 8V4.2" stroke={C.brand} strokeWidth="2.4" strokeLinecap="round" />
-      <circle cx="24" cy="3.2" r="2.6" fill="#ff8a52" />
-      <path d={BORON_BODY} fill={C.brand} />
-      <rect x="15.5" y="17.5" width="5" height="10.5" rx="2.5" fill={C.ink} />
-      <rect x="27.5" y="17.5" width="5" height="10.5" rx="2.5" fill={C.ink} />
-      <circle cx="17.2" cy="19.6" r="1" fill="#fff" />
-      <circle cx="29.2" cy="19.6" r="1" fill="#fff" />
-      <path d="M21 32.2Q24 34.4 27 32.2" fill="none" stroke={C.ink} strokeWidth="1.8" strokeLinecap="round" />
+      <defs>
+        <radialGradient id="skin" cx="38%" cy="30%" r="78%">
+          <stop offset="0%" stopColor="#ff9a5c" />
+          <stop offset="48%" stopColor="#ff5f14" />
+          <stop offset="100%" stopColor="#d93f00" />
+        </radialGradient>
+      </defs>
+      <path d={BORON_EGG} fill="url(#skin)" />
+      <ellipse cx="17.2" cy="12.6" rx="6.6" ry="3.6" fill="#fff" fillOpacity=".3" transform="rotate(-24 17.2 12.6)" />
+      <ellipse cx="11.6" cy="31.4" rx="2.9" ry="1.7" fill="#c42f00" fillOpacity=".32" />
+      <ellipse cx="36.4" cy="31.4" rx="2.9" ry="1.7" fill="#c42f00" fillOpacity=".32" />
+      <rect x="15" y="19.6" width="5.2" height="10.8" rx="2.6" fill={C.ink} />
+      <rect x="27.8" y="19.6" width="5.2" height="10.8" rx="2.6" fill={C.ink} />
+      <circle cx="16.8" cy="21.9" r="1.15" fill="#fff" />
+      <circle cx="29.6" cy="21.9" r="1.15" fill="#fff" />
+      <path d="M20.4 34.6Q24 37.6 27.6 34.6" fill="none" stroke={C.ink} strokeWidth="1.9" strokeLinecap="round" />
     </svg>
   );
 }

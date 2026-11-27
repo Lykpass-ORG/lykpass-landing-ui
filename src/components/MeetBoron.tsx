@@ -49,9 +49,13 @@ export function MeetBoron() {
           <div className="relative mx-auto aspect-square w-full max-w-[34rem] overflow-hidden rounded-[var(--radius-panel)] bg-night shadow-lift ring-1 ring-white/5">
             <Orbits />
             <div className="absolute inset-0 grid place-items-center">
-              <div className="boron-float">
-                <Boron size={176} track title={b.label} className="drop-shadow-[0_24px_40px_rgba(255,87,9,0.28)] sm:h-[208px] sm:w-[208px]" />
-              </div>
+              <Boron
+                size={196}
+                track
+                grounded
+                title={b.label}
+                className="drop-shadow-[0_22px_36px_rgba(255,87,9,0.3)] sm:h-[232px] sm:w-[232px]"
+              />
             </div>
             {/* Floating requests (larger screens) */}
             {b.bubbles.map((text, i) => (

@@ -33,7 +33,7 @@ export function FeedScreen() {
               <p className="text-[0.95rem] font-bold text-ink">{e.t}</p>
               <p className="tabular text-[0.78rem] text-mute">{e.m}</p>
               <p className="mt-2 inline-flex items-center gap-1 rounded-full bg-tint px-2.5 py-1 text-[0.72rem] font-semibold text-brand-ink">
-                <Boron size={14} /> {e.why}
+                <Boron size={17} delay={-1.5} className="-my-0.5" /> {e.why}
               </p>
             </div>
           </div>

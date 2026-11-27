@@ -273,44 +273,110 @@ a {
   transition: background-color 9999s ease-out;
 }
 
-/* Boron, the AI assistant: blink, glance and antenna spark. */
-.boron .boron-look {
+/*
+  Boron, the AI assistant. Each layer has its own rhythm so the motion never looks looped:
+  head turns (11s), eyes wander (7.4s), blink (5.2s), grin (9s), bob (5.5s, large only).
+  --boron-delay offsets each instance so several Borons on a page don't move in sync.
+*/
+.boron .boron-head {
+  transform-box: view-box;
+  transform-origin: 24px 44px;
+  animation: boron-turn 11s ease-in-out infinite;
+  animation-delay: var(--boron-delay, 0s);
+}
+.boron .boron-face {
+  transform-box: view-box;
+  animation: boron-face-turn 11s ease-in-out infinite;
+  animation-delay: var(--boron-delay, 0s);
+}
+.boron .boron-track {
   transform: translate(var(--bx, 0px), var(--by, 0px));
-  transition: transform 0.35s var(--ease-out-expo);
+  transition: transform 0.45s var(--ease-out-expo);
+}
+.boron .boron-eyes {
+  animation: boron-wander 7.4s ease-in-out infinite;
+  animation-delay: var(--boron-delay, 0s);
+}
+.boron.boron-tracking .boron-eyes {
+  animation: none;
+}
+.boron-thinking .boron-eyes {
+  animation: boron-glance 1.6s ease-in-out infinite;
 }
 .boron .boron-blink {
   transform-box: fill-box;
   transform-origin: center;
   animation: boron-blink 5.2s infinite;
+  animation-delay: calc(var(--boron-delay, 0s) * 0.6);
 }
-.boron-thinking .boron-look {
-  animation: boron-glance 1.6s var(--ease-out-expo) infinite;
+.boron .boron-mouth {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: boron-grin 9s ease-in-out infinite;
+  animation-delay: var(--boron-delay, 0s);
 }
-.boron .boron-spark {
+.boron .boron-bob {
+  transform-box: view-box;
+  animation: boron-bob 5.5s ease-in-out infinite;
+}
+.boron .boron-shadow {
   transform-box: fill-box;
   transform-origin: center;
-  animation: boron-spark 2.6s ease-in-out infinite;
+  animation: boron-shadow 5.5s ease-in-out infinite;
 }
-@keyframes boron-blink {
-  0%, 88%, 100% { transform: scaleY(1); }
-  90% { transform: scaleY(0.12); }
-  92% { transform: scaleY(1); }
-  95% { transform: scaleY(0.12); }
-  97% { transform: scaleY(1); }
+
+@keyframes boron-turn {
+  0%, 36% { transform: none; }
+  43%, 53% { transform: translateX(-1.2px) rotate(-7deg); }
+  60%, 70% { transform: translateX(1.2px) rotate(7deg); }
+  77%, 100% { transform: none; }
+}
+@keyframes boron-face-turn {
+  0%, 36% { transform: none; }
+  43%, 53% { transform: translateX(-2.8px) scaleX(0.97); }
+  60%, 70% { transform: translateX(2.8px) scaleX(0.97); }
+  77%, 100% { transform: none; }
+}
+@keyframes boron-wander {
+  0%, 14% { transform: none; }
+  20%, 30% { transform: translate(-1.5px, -1.1px); }
+  36%, 48% { transform: translate(1.7px, -0.5px); }
+  54%, 64% { transform: translate(0.3px, 1.2px); }
+  70%, 100% { transform: none; }
 }
 @keyframes boron-glance {
   0%, 100% { transform: translateX(0); }
-  30% { transform: translateX(-2.2px); }
-  65% { transform: translateX(2.2px); }
+  30% { transform: translateX(-2px); }
+  65% { transform: translateX(2px); }
 }
-@keyframes boron-spark {
+@keyframes boron-blink {
+  0%, 88%, 100% { transform: scaleY(1); }
+  90% { transform: scaleY(0.1); }
+  92% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+  97% { transform: scaleY(1); }
+}
+@keyframes boron-grin {
+  0%, 42% { transform: none; }
+  48%, 60% { transform: scale(1.22, 1.6); }
+  66%, 100% { transform: none; }
+}
+@keyframes boron-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.6px); }
+}
+@keyframes boron-shadow {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(0.72); opacity: 0.65; }
+  50% { transform: scale(0.82); opacity: 0.7; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .boron .boron-head,
+  .boron .boron-face,
+  .boron .boron-eyes,
   .boron .boron-blink,
-  .boron .boron-spark,
-  .boron-thinking .boron-look {
+  .boron .boron-mouth,
+  .boron .boron-bob,
+  .boron .boron-shadow {
     animation: none;
   }
 }
@@ -322,18 +388,11 @@ a {
 .boron-orbit-rev {
   animation: boron-orbit 52s linear infinite reverse;
 }
-.boron-float {
-  animation: boron-float 5.5s ease-in-out infinite;
-}
 .bubble-float {
   animation: bubble-float 7s ease-in-out infinite;
 }
 @keyframes boron-orbit {
   to { transform: rotate(360deg); }
-}
-@keyframes boron-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
 }
 @keyframes bubble-float {
   0%, 100% { transform: translateY(0); }
@@ -342,7 +401,6 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .boron-orbit,
   .boron-orbit-rev,
-  .boron-float,
   .bubble-float {
     animation: none;
   }
