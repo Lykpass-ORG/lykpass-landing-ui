@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
-import { Sparkles } from "lucide-react";
+import { Boron } from "./Boron";
 import heroImg from "../../public/images/crowd-golden.jpg";
 import { WaitlistForm } from "./WaitlistForm";
 import { TypedQuery } from "./TypedQuery";
@@ -76,7 +76,7 @@ export function Hero() {
         <div style={{ animationDelay: "0.5s" }} className="hero-rise hidden lg:block" aria-hidden>
           <div className="ml-auto max-w-[25rem] rounded-[var(--radius-panel)] bg-surface p-3 text-ink shadow-lift">
             <div className="flex items-center gap-3 rounded-[20px] bg-tint px-4 py-4">
-              <Sparkles className="h-5 w-5 shrink-0 text-brand" />
+              <Boron size={28} thinking />
               <TypedQuery lines={t.hero.queries} className="text-[1.02rem] font-medium" />
             </div>
             <div className="flex items-center justify-between px-3 pb-1 pt-3 text-sm text-mute">

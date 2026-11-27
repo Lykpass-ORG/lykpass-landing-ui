@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowLeftRight, BellRing, Check, Heart, MessageCircle, Sparkles, Ticket } from "lucide-react";
+import { ArrowLeftRight, BellRing, Check, Heart, MessageCircle, Ticket } from "lucide-react";
+import { Boron } from "./Boron";
 import dance from "../../public/images/dance-floor.jpg";
 import party from "../../public/images/party-crowd.jpg";
 import wax from "../../public/images/waxprint-dancers.jpg";
@@ -32,7 +33,7 @@ export function FeedScreen() {
               <p className="text-[0.95rem] font-bold text-ink">{e.t}</p>
               <p className="tabular text-[0.78rem] text-mute">{e.m}</p>
               <p className="mt-2 inline-flex items-center gap-1 rounded-full bg-tint px-2.5 py-1 text-[0.72rem] font-semibold text-brand-ink">
-                <Sparkles className="h-3 w-3 shrink-0" /> {e.why}
+                <Boron size={14} /> {e.why}
               </p>
             </div>
           </div>

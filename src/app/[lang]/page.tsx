@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { AskDemo } from "@/components/AskDemo";
+import { MeetBoron } from "@/components/MeetBoron";
 import { TrustPromise } from "@/components/TrustPromise";
 import { AttendeeChapters } from "@/components/AttendeeChapters";
 import { PhotoBreak } from "@/components/PhotoBreak";
@@ -48,6 +49,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
       <main id="main">
         <Hero />
         <AskDemo />
+        <MeetBoron />
         <ExpandOnScroll>
           <TrustPromise />
         </ExpandOnScroll>

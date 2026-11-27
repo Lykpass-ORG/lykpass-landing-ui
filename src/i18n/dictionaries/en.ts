@@ -107,9 +107,27 @@ const en = {
     seats: "Seats open",
     sample: "Sample events, shown for illustration.",
   },
+  boron: {
+    name: "Boron",
+    label: "Boron, the Lykpass AI assistant",
+    t1: "Meet Boron.",
+    t2: "The AI inside Lykpass.",
+    body: "Boron is who you talk to in Lykpass. Ask for a plan, a detail about an event or help with your ticket. Boron only works from real event and ticket records, so it never makes things up.",
+    skills: [
+      { title: "Finds your night", body: "Turns “rooftop jazz under ₦15k” into real events you can book." },
+      { title: "Knows the event", body: "Answers parking, age and door-time questions from the event’s own details." },
+      { title: "Sorts your tickets", body: "Helps with transfers and refund requests. You confirm every step." },
+      { title: "Co-pilots organizers", body: "Drafts event pages, suggests prices and forecasts sales for you to approve." },
+    ],
+    bubbles: ["Rooftop jazz this weekend?", "Is there parking?", "Send a ticket to Tolu", "Draft my brunch event"],
+    soonBadge: "Coming soon",
+    soon: "Boron arrives with the Lykpass app. Join early access to meet it first.",
+    cta: "Join early access",
+    ask: "Ask Boron",
+  },
   promise: {
     statement: "AI picks, ranks and explains. Your ticket records decide what’s true.",
-    body: "That’s the rule Lykpass is built on. The assistant helps you find and understand events. It never gets the final word on money, seats or your ticket.",
+    body: "That’s the rule Lykpass is built on. Boron, our assistant, helps you find and understand events. It never gets the final word on money, seats or your ticket.",
     facts: [
       { title: "Prices", body: "Shown exactly as the organizer set them. The assistant can’t round, discount or invent one." },
       { title: "Seats and dates", body: "Availability is read live before an event appears. Sold out means it doesn’t show up." },
@@ -187,7 +205,7 @@ const en = {
     imgAlt: "A smiling organizer in glasses holding a laptop against an orange wall",
     briefLabel: "Your brief",
     brief: "Afrobeats brunch for 300 people in Lekki, last Saturday of March, family friendly.",
-    draftBadge: "AI draft · review before publishing",
+    draftBadge: "Drafted by Boron · review before publishing",
     sample: "Sample",
     draftTitle: "Sunday Groove: Afrobeats Brunch",
     draftBody:
@@ -275,6 +293,10 @@ const en = {
       {
         q: "What is Lykpass?",
         a: "Lykpass is an event discovery and ticketing app with AI built in. You describe what you feel like doing, such as a rooftop jazz night under ₦15k this weekend, and Lykpass shows real events you can book. Organizers use the same AI to draft, price, promote and forecast their events.",
+      },
+      {
+        q: "Who is Boron?",
+        a: "Boron is the AI assistant built into Lykpass. It finds events from a plain sentence, answers questions about an event, helps with tickets and transfers, and drafts and forecasts for organizers. It only uses real event and ticket records, and anything involving money or publishing still needs a person to confirm. Boron arrives with the Lykpass app, which is coming soon.",
       },
       {
         q: "Can the AI make up an event, a price or a seat?",

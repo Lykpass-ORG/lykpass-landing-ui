@@ -3,7 +3,8 @@
 import Image, { type StaticImageData } from "next/image";
 import { useRef, useState } from "react";
 import { useMotionValueEvent, useScroll } from "motion/react";
-import { Building2, CalendarDays, Check, MapPin, Music2, Sparkles, Ticket, Wallet } from "lucide-react";
+import { Building2, CalendarDays, Check, MapPin, Music2, Ticket, Wallet } from "lucide-react";
+import { Boron } from "./Boron";
 import stage from "../../public/images/festival-stage.jpg";
 import singer from "../../public/images/live-singer.jpg";
 import party from "../../public/images/party-crowd.jpg";
@@ -99,7 +100,7 @@ export function AskDemo() {
           <div className="relative min-w-0" data-reveal>
             <div className="rounded-[var(--radius-panel)] bg-night p-2.5 shadow-lift ring-1 ring-white/5 sm:p-4">
               <div className="flex items-start gap-3 rounded-[20px] bg-surface px-4 py-3.5 sm:items-center sm:px-5 sm:py-4">
-                <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-brand sm:mt-0" aria-hidden />
+                <Boron size={28} thinking={typed < a.query.length} className="-mt-0.5 sm:mt-0" />
                 <p className="min-h-[1.5em] text-[0.98rem] font-medium text-ink sm:text-[1.1rem]" aria-label={`${a.queryLabel}: ${a.query}`}>
                   <span aria-hidden>
                     {a.query.slice(0, typed)}

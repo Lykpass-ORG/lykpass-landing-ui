@@ -3,6 +3,10 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 
+// Same outline as the Boron component; duplicated because this module renders on the server only.
+const BORON_BODY =
+  "M16 8H32A12 12 0 0 1 44 20V20.5A3.5 3.5 0 0 0 44 27.5V28A12 12 0 0 1 32 40H16A12 12 0 0 1 4 28V27.5A3.5 3.5 0 0 0 4 20.5V20A12 12 0 0 1 16 8Z";
+
 export const cardSize = { width: 1200, height: 630 };
 
 const C = {
@@ -49,13 +53,18 @@ function Mark({ size = 44 }: { size?: number }) {
   );
 }
 
-function Sparkle() {
+/** Boron, drawn statically (the card is a still image, so no blink). */
+function BoronStill({ size = 34 }: { size?: number }) {
   return (
-    <svg width="26" height="26" viewBox="0 0 24 24">
-      <path
-        d="M12 2.5l1.9 5.1 5.1 1.9-5.1 1.9L12 16.5l-1.9-5.1L5 9.5l5.1-1.9L12 2.5Zm6.5 11 .9 2.3 2.3.9-2.3.9-.9 2.3-.9-2.3-2.3-.9 2.3-.9.9-2.3Z"
-        fill={C.brand}
-      />
+    <svg width={size} height={size} viewBox="0 0 48 48">
+      <path d="M24 8V4.2" stroke={C.brand} strokeWidth="2.4" strokeLinecap="round" />
+      <circle cx="24" cy="3.2" r="2.6" fill="#ff8a52" />
+      <path d={BORON_BODY} fill={C.brand} />
+      <rect x="15.5" y="17.5" width="5" height="10.5" rx="2.5" fill={C.ink} />
+      <rect x="27.5" y="17.5" width="5" height="10.5" rx="2.5" fill={C.ink} />
+      <circle cx="17.2" cy="19.6" r="1" fill="#fff" />
+      <circle cx="29.2" cy="19.6" r="1" fill="#fff" />
+      <path d="M21 32.2Q24 34.4 27 32.2" fill="none" stroke={C.ink} strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
 }
@@ -173,7 +182,7 @@ export async function renderSocialCard(t: Dictionary, host: string) {
                 fontWeight: 600,
               }}
             >
-              <Sparkle />
+              <BoronStill />
               <span style={{ display: "flex", flex: 1 }}>{t.hero.queries[0]}</span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 20, padding: "14px 10px 4px", fontSize: 18 }}>

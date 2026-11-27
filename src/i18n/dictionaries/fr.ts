@@ -109,9 +109,27 @@ const fr: Dictionary = {
     seats: "Places dispo",
     sample: "Événements fictifs, à titre d’illustration.",
   },
+  boron: {
+    name: "Boron",
+    label: "Boron, l’assistant IA de Lykpass",
+    t1: "Voici Boron.",
+    t2: "L’IA au cœur de Lykpass.",
+    body: "C’est à Boron que vous parlez dans Lykpass. Demandez une idée de sortie, un détail sur un événement ou de l’aide pour votre billet. Boron ne travaille qu’à partir de vraies données d’événements et de billets : il n’invente jamais rien.",
+    skills: [
+      { title: "Trouve votre soirée", body: "Transforme « jazz sur un rooftop à moins de 15 000 ₦ » en vrais événements réservables." },
+      { title: "Connaît l’événement", body: "Répond aux questions de parking, d’âge et d’horaires à partir des infos de l’événement." },
+      { title: "Gère vos billets", body: "Aide pour les transferts et les demandes de remboursement. Vous validez chaque étape." },
+      { title: "Copilote des organisateurs", body: "Rédige les pages, suggère des prix et prévoit les ventes, à valider par vous." },
+    ],
+    bubbles: ["Du jazz sur un rooftop ce week-end ?", "Il y a un parking ?", "Envoie un billet à Tolu", "Rédige mon brunch"],
+    soonBadge: "Bientôt disponible",
+    soon: "Boron arrive avec l’app Lykpass. Rejoignez l’accès anticipé pour le découvrir en premier.",
+    cta: "Accès anticipé",
+    ask: "Demander à Boron",
+  },
   promise: {
     statement: "L’IA choisit, classe et explique. Vos billets disent ce qui est vrai.",
-    body: "C’est la règle sur laquelle Lykpass repose. L’assistant vous aide à trouver et comprendre les événements. Il n’a jamais le dernier mot sur l’argent, les places ou votre billet.",
+    body: "C’est la règle sur laquelle Lykpass repose. Boron, notre assistant, vous aide à trouver et comprendre les événements. Il n’a jamais le dernier mot sur l’argent, les places ou votre billet.",
     facts: [
       { title: "Prix", body: "Affichés exactement comme l’organisateur les a fixés. L’assistant ne peut ni arrondir, ni remiser, ni inventer." },
       { title: "Places et dates", body: "La disponibilité est vérifiée en direct. Complet signifie que l’événement n’apparaît pas." },
@@ -189,7 +207,7 @@ const fr: Dictionary = {
     imgAlt: "Un organisateur souriant, à lunettes, tenant un ordinateur devant un mur orange",
     briefLabel: "Votre brief",
     brief: "Brunch afrobeats pour 300 personnes à Lekki, dernier samedi de mars, en famille.",
-    draftBadge: "Brouillon IA · à relire avant publication",
+    draftBadge: "Rédigé par Boron · à relire avant publication",
     sample: "Exemple",
     draftTitle: "Sunday Groove : Brunch Afrobeats",
     draftBody:
@@ -277,6 +295,10 @@ const fr: Dictionary = {
       {
         q: "Qu’est-ce que Lykpass ?",
         a: "Lykpass est une app de découverte d’événements et de billetterie avec l’IA intégrée. Vous décrivez ce qui vous fait envie, par exemple une soirée jazz sur un rooftop à moins de 15 000 ₦ ce week-end, et Lykpass affiche de vrais événements réservables. Les organisateurs utilisent la même IA pour rédiger, fixer leurs prix, promouvoir et anticiper leurs événements.",
+      },
+      {
+        q: "Qui est Boron ?",
+        a: "Boron est l’assistant IA intégré à Lykpass. Il trouve des événements à partir d’une simple phrase, répond aux questions sur un événement, aide pour les billets et les transferts, et rédige et prévoit pour les organisateurs. Il n’utilise que de vraies données d’événements et de billets, et tout ce qui touche à l’argent ou à la publication doit être confirmé par une personne. Boron arrive avec l’app Lykpass, bientôt disponible.",
       },
       {
         q: "L’IA peut-elle inventer un événement, un prix ou une place ?",

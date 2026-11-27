@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Check, Megaphone, MessageSquareText, PenLine, Sparkles, Users } from "lucide-react";
+import { Check, Megaphone, MessageSquareText, PenLine, Users } from "lucide-react";
+import { Boron } from "./Boron";
 import organizer from "../../public/images/organizer-orange.jpg";
 import { useI18n } from "@/i18n/I18nProvider";
 
@@ -85,7 +86,7 @@ export function Organizers() {
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="inline-flex items-center gap-2 rounded-full bg-tint px-3 py-1.5 text-[0.78rem] font-semibold text-brand-ink">
-                <Sparkles className="h-3.5 w-3.5 shrink-0" aria-hidden /> {o.draftBadge}
+                <Boron size={18} /> {o.draftBadge}
               </p>
               <p className="text-[0.8rem] text-mute">{o.sample}</p>
             </div>

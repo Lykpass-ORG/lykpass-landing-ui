@@ -40,3 +40,10 @@ Behavior:
 
 - Every event, price, forecast and ticket shown in the page's product demos is sample data and is labelled as such on the page.
 - Photography is from Unsplash (Unsplash License). Each file in `public/images` has its source URL embedded in its metadata.
+
+## Boron, the AI assistant
+
+Boron is the character that marks AI in Lykpass: an orange ticket-shaped head (notched like the Lykpass mark) with pill eyes that blink, a smile and an antenna spark.
+
+- In the app code: `src/components/Boron.tsx` (`thinking` makes the eyes glance while Boron is "typing"; `track` makes them follow the pointer). Animations live in `globals.css` under `.boron-*` and stop for reduced-motion users.
+- Standalone files: `public/brand/boron.svg` (self-animating: blinks and glances anywhere SVG animation plays) and `public/brand/boron-static.svg`.

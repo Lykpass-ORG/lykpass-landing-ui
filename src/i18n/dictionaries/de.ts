@@ -109,9 +109,27 @@ const de: Dictionary = {
     seats: "Plätze frei",
     sample: "Beispiel-Events zur Veranschaulichung.",
   },
+  boron: {
+    name: "Boron",
+    label: "Boron, der KI-Assistent von Lykpass",
+    t1: "Das ist Boron.",
+    t2: "Die KI in Lykpass.",
+    body: "Mit Boron sprichst du in Lykpass. Frag nach einem Plan, einem Detail zu einem Event oder nach Hilfe mit deinem Ticket. Boron arbeitet nur mit echten Event- und Ticketdaten und erfindet deshalb nie etwas.",
+    skills: [
+      { title: "Findet deinen Abend", body: "Macht aus „Rooftop-Jazz unter 15.000 ₦“ echte, buchbare Events." },
+      { title: "Kennt das Event", body: "Beantwortet Fragen zu Parken, Alter und Einlass aus den Event-Details." },
+      { title: "Regelt deine Tickets", body: "Hilft bei Übertragungen und Erstattungsanträgen. Jeden Schritt bestätigst du." },
+      { title: "Copilot für Veranstalter", body: "Entwirft Event-Seiten, schlägt Preise vor und prognostiziert Verkäufe zur Freigabe." },
+    ],
+    bubbles: ["Rooftop-Jazz am Wochenende?", "Gibt es Parkplätze?", "Schick Tolu ein Ticket", "Entwirf meinen Brunch"],
+    soonBadge: "Demnächst",
+    soon: "Boron kommt mit der Lykpass-App. Sichere dir Early Access und lerne Boron als Erstes kennen.",
+    cta: "Early Access sichern",
+    ask: "Boron fragen",
+  },
   promise: {
     statement: "Die KI wählt, sortiert und erklärt. Deine Ticketdaten entscheiden, was stimmt.",
-    body: "Das ist die Regel, auf der Lykpass aufbaut. Der Assistent hilft dir, Events zu finden und zu verstehen. Bei Geld, Plätzen oder deinem Ticket hat er nie das letzte Wort.",
+    body: "Das ist die Regel, auf der Lykpass aufbaut. Boron, unser Assistent, hilft dir, Events zu finden und zu verstehen. Bei Geld, Plätzen oder deinem Ticket hat er nie das letzte Wort.",
     facts: [
       { title: "Preise", body: "Genau so, wie der Veranstalter sie festgelegt hat. Der Assistent kann nichts runden, rabattieren oder erfinden." },
       { title: "Plätze und Termine", body: "Die Verfügbarkeit wird live geprüft. Ausverkauft heißt: Das Event wird gar nicht angezeigt." },
@@ -189,7 +207,7 @@ const de: Dictionary = {
     imgAlt: "Ein lächelnder Veranstalter mit Brille hält einen Laptop vor einer orangefarbenen Wand",
     briefLabel: "Dein Briefing",
     brief: "Afrobeats-Brunch für 300 Leute in Lekki, letzter Samstag im März, familienfreundlich.",
-    draftBadge: "KI-Entwurf · vor Veröffentlichung prüfen",
+    draftBadge: "Entwurf von Boron · vor Veröffentlichung prüfen",
     sample: "Beispiel",
     draftTitle: "Sunday Groove: Afrobeats-Brunch",
     draftBody:
@@ -277,6 +295,10 @@ const de: Dictionary = {
       {
         q: "Was ist Lykpass?",
         a: "Lykpass ist eine App für Event-Suche und Ticketing mit eingebauter KI. Du beschreibst, worauf du Lust hast, etwa einen Rooftop-Jazzabend unter 15.000 ₦ am Wochenende, und Lykpass zeigt dir echte, buchbare Events. Veranstalter nutzen dieselbe KI, um Events zu entwerfen, zu bepreisen, zu bewerben und zu prognostizieren.",
+      },
+      {
+        q: "Wer ist Boron?",
+        a: "Boron ist der KI-Assistent in Lykpass. Boron findet Events aus einem einfachen Satz, beantwortet Fragen zu Events, hilft bei Tickets und Übertragungen und erstellt Entwürfe und Prognosen für Veranstalter. Boron nutzt nur echte Event- und Ticketdaten, und alles, was Geld oder Veröffentlichungen betrifft, bestätigt ein Mensch. Boron kommt mit der Lykpass-App, die bald startet.",
       },
       {
         q: "Kann die KI ein Event, einen Preis oder einen Platz erfinden?",
