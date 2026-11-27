@@ -43,7 +43,7 @@ Behavior:
 
 ## Boron, the AI assistant
 
-Boron is the character that marks AI in Lykpass: a shaded, egg-shaped orange head with pill eyes, a smile and a little blush. It turns its head left and right now and then, looks around, blinks and grins.
+Boron is the character that marks AI in Lykpass: a shaded, egg-shaped orange head with pill eyes, a smile, a little blush and a polka-dot party hat. It turns its head left and right now and then, looks around, blinks and grins, its hat wobbles, and every so often it blows a party blower.
 
 - In the app code: `src/components/Boron.tsx` (`thinking` makes the eyes dart while Boron is "typing"; `track` makes them follow the pointer; `grounded` adds a bob and a ground shadow; `delay` keeps several Borons out of sync). Animations live in `globals.css` under `.boron-*` and stop for reduced-motion users.
-- Standalone files: `public/brand/boron.svg` (self-animating: turns, looks around, blinks and grins anywhere SVG animation plays) and `public/brand/boron-static.svg`.
+- Standalone files: `public/brand/boron.svg` (self-animating: turns, looks around, blinks, grins, wobbles its hat and blows its party blower anywhere SVG animation plays) and `public/brand/boron-static.svg`.

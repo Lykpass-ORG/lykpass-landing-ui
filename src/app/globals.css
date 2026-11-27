@@ -325,6 +325,46 @@ a {
   animation: boron-shadow 5.5s ease-in-out infinite;
 }
 
+.boron .boron-hat {
+  transform-box: view-box;
+  transform-origin: 24px 7px;
+  animation: boron-hat 3.8s ease-in-out infinite;
+  animation-delay: var(--boron-delay, 0s);
+}
+.boron .boron-pom {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: boron-pom 1.9s ease-in-out infinite;
+  animation-delay: var(--boron-delay, 0s);
+}
+.boron .boron-blower {
+  transform-box: fill-box;
+  transform-origin: 0% 50%;
+  opacity: 0;
+  animation: boron-blow 13s ease-in-out infinite;
+  animation-delay: calc(var(--boron-delay, 0s) * 1.7);
+}
+
+@keyframes boron-hat {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(4deg); }
+}
+@keyframes boron-pom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12, 0.9); }
+}
+/* Party blower: hidden most of the cycle, then unrolls, toots twice and rolls back up. */
+@keyframes boron-blow {
+  0%, 68% { transform: scaleX(0.12); opacity: 0; }
+  70% { transform: scaleX(0.16); opacity: 1; }
+  74% { transform: scaleX(1); opacity: 1; }
+  77% { transform: scaleX(0.86); }
+  80% { transform: scaleX(1); }
+  83% { transform: scaleX(0.88); }
+  86% { transform: scaleX(1); }
+  90% { transform: scaleX(0.16); opacity: 1; }
+  92%, 100% { transform: scaleX(0.12); opacity: 0; }
+}
 @keyframes boron-turn {
   0%, 36% { transform: none; }
   43%, 53% { transform: translateX(-1.2px) rotate(-7deg); }
@@ -376,7 +416,10 @@ a {
   .boron .boron-blink,
   .boron .boron-mouth,
   .boron .boron-bob,
-  .boron .boron-shadow {
+  .boron .boron-shadow,
+  .boron .boron-hat,
+  .boron .boron-pom,
+  .boron .boron-blower {
     animation: none;
   }
 }

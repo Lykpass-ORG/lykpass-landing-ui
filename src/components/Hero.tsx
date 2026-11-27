@@ -75,8 +75,8 @@ export function Hero() {
 
         <div style={{ animationDelay: "0.5s" }} className="hero-rise hidden lg:block" aria-hidden>
           <div className="ml-auto max-w-[25rem] rounded-[var(--radius-panel)] bg-surface p-3 text-ink shadow-lift">
-            <div className="flex items-center gap-3 rounded-[20px] bg-tint px-4 py-4">
-              <Boron size={34} thinking />
+            <div className="flex items-center gap-3.5 rounded-[20px] bg-tint px-4 pb-4 pt-6">
+              <Boron size={50} thinking className="-my-2" />
               <TypedQuery lines={t.hero.queries} className="text-[1.02rem] font-medium" />
             </div>
             <div className="flex items-center justify-between px-3 pb-1 pt-3 text-sm text-mute">

@@ -56,7 +56,7 @@ function Mark({ size = 44 }: { size?: number }) {
 /** Boron, drawn statically (the card is a still image, so no motion). */
 function BoronStill({ size = 38 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 48 48">
+    <svg width={size} height={Math.round(size * (64 / 48))} viewBox="0 -16 48 64">
       <defs>
         <radialGradient id="skin" cx="38%" cy="30%" r="78%">
           <stop offset="0%" stopColor="#ff9a5c" />
@@ -65,6 +65,15 @@ function BoronStill({ size = 38 }: { size?: number }) {
         </radialGradient>
       </defs>
       <path d={BORON_EGG} fill="url(#skin)" />
+      <g transform="translate(1.6 0) rotate(-14 24 7)">
+        <path d="M16.4 7.3L24 -11.4L31.6 7.3Q24 9.8 16.4 7.3Z" fill={C.ink} />
+        <circle cx="21.4" cy="-0.6" r="1.35" fill="#ff8a52" />
+        <circle cx="26.2" cy="2.8" r="1.25" fill="#fff2ea" />
+        <circle cx="24" cy="-5.6" r="1.05" fill="#fff2ea" />
+        <circle cx="19.8" cy="4.6" r="1.1" fill="#ffb07a" />
+        <path d="M16.2 7.1Q24 9.9 31.8 7.1" fill="none" stroke="#ffe0cd" strokeWidth="2.3" strokeLinecap="round" />
+        <circle cx="24" cy="-12.3" r="3" fill="#fff2ea" />
+      </g>
       <ellipse cx="17.2" cy="12.6" rx="6.6" ry="3.6" fill="#fff" fillOpacity=".3" transform="rotate(-24 17.2 12.6)" />
       <ellipse cx="11.6" cy="31.4" rx="2.9" ry="1.7" fill="#c42f00" fillOpacity=".32" />
       <ellipse cx="36.4" cy="31.4" rx="2.9" ry="1.7" fill="#c42f00" fillOpacity=".32" />
