@@ -35,8 +35,15 @@ export function WaitlistForm({ withRole = false, className = "" }: Props) {
   }
 
   return (
-    <form action={action} className={`w-full min-w-0 ${className}`} noValidate>
+    <form action={action} className={`relative w-full min-w-0 ${className}`} noValidate>
       <input type="hidden" name="locale" value={locale} />
+      {/* Honeypot for bots: hidden from people and assistive tech, never focusable. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <label>
+          Company
+          <input type="text" name="company" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
+      </div>
       {withRole && (
         <fieldset className="mb-4">
           <legend className="sr-only">{t.form.roleLegend}</legend>
