@@ -341,7 +341,7 @@ a {
   transform-box: fill-box;
   transform-origin: 0% 50%;
   opacity: 0;
-  animation: boron-blow 13s ease-in-out infinite;
+  animation: boron-blow 6.5s ease-in-out infinite;
   animation-delay: calc(var(--boron-delay, 0s) * 1.7);
 }
 
@@ -353,18 +353,19 @@ a {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.12, 0.9); }
 }
-/* Party blower: hidden most of the cycle, then unrolls, toots twice and rolls back up. */
+/* Party blower: every 6.5s it unrolls, toots twice and rolls back up (about 3s out, 3.5s away). */
 @keyframes boron-blow {
-  0%, 68% { transform: scaleX(0.12); opacity: 0; }
-  70% { transform: scaleX(0.16); opacity: 1; }
-  74% { transform: scaleX(1); opacity: 1; }
-  77% { transform: scaleX(0.86); }
-  80% { transform: scaleX(1); }
-  83% { transform: scaleX(0.88); }
-  86% { transform: scaleX(1); }
-  90% { transform: scaleX(0.16); opacity: 1; }
-  92%, 100% { transform: scaleX(0.12); opacity: 0; }
+  0%, 44% { transform: scaleX(0.12); opacity: 0; }
+  46% { transform: scaleX(0.16); opacity: 1; }
+  53% { transform: scaleX(1); opacity: 1; }
+  59% { transform: scaleX(0.86); }
+  65% { transform: scaleX(1); }
+  71% { transform: scaleX(0.88); }
+  77% { transform: scaleX(1); }
+  86% { transform: scaleX(0.16); opacity: 1; }
+  90%, 100% { transform: scaleX(0.12); opacity: 0; }
 }
+
 @keyframes boron-turn {
   0%, 36% { transform: none; }
   43%, 53% { transform: translateX(-1.2px) rotate(-7deg); }
