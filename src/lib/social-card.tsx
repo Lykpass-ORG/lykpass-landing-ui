@@ -53,42 +53,75 @@ function Mark({ size = 44 }: { size?: number }) {
   );
 }
 
-/** Boron, drawn statically (the card is a still image, so no motion). */
-function BoronStill({ size = 38 }: { size?: number }) {
+/**
+ * Boron at full fidelity for the still card: shaded egg head, party hat with pom-pom,
+ * blush, eye shine, and (optionally) the party blower out mid-toot.
+ * Each <svg> is rasterised on its own, so the gradient ids can repeat safely.
+ */
+function BoronStill({ size = 38, blower = false }: { size?: number; blower?: boolean }) {
+  // viewBox leaves room above for the hat and to the right for the blower.
+  const vb = blower ? { x: 0, y: -16, w: 72, h: 64 } : { x: 0, y: -16, w: 48, h: 64 };
   return (
-    <svg width={size} height={Math.round(size * (64 / 48))} viewBox="0 -16 48 64">
+    <svg width={Math.round((size * vb.w) / 48)} height={Math.round((size * vb.h) / 48)} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}>
       <defs>
         <radialGradient id="skin" cx="38%" cy="30%" r="78%">
           <stop offset="0%" stopColor="#ff9a5c" />
           <stop offset="48%" stopColor="#ff5f14" />
           <stop offset="100%" stopColor="#d93f00" />
         </radialGradient>
+        <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#fff" stopOpacity=".55" />
+          <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id="hat" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#1d4a42" />
+          <stop offset="55%" stopColor="#0e2622" />
+          <stop offset="100%" stopColor="#081a17" />
+        </linearGradient>
       </defs>
       <path d={BORON_EGG} fill="url(#skin)" />
+      <path d="M9.2 35.6C12.4 40.6 17.6 43.2 24 43.2C30.4 43.2 35.6 40.6 38.8 35.6" fill="none" stroke="#ffb07a" strokeOpacity=".45" strokeWidth="1.1" strokeLinecap="round" />
+      <ellipse cx="17.2" cy="12.6" rx="6.6" ry="3.6" fill="url(#sheen)" transform="rotate(-24 17.2 12.6)" />
       <g transform="translate(1.6 0) rotate(-14 24 7)">
-        <path d="M16.4 7.3L24 -11.4L31.6 7.3Q24 9.8 16.4 7.3Z" fill={C.ink} />
+        <path d="M16.4 7.3L24 -11.4L31.6 7.3Q24 9.8 16.4 7.3Z" fill="url(#hat)" />
+        <path d="M24 -11.4L20.6 6.2" stroke="#fff" strokeOpacity=".14" strokeWidth="1.4" strokeLinecap="round" />
         <circle cx="21.4" cy="-0.6" r="1.35" fill="#ff8a52" />
         <circle cx="26.2" cy="2.8" r="1.25" fill="#fff2ea" />
         <circle cx="24" cy="-5.6" r="1.05" fill="#fff2ea" />
         <circle cx="19.8" cy="4.6" r="1.1" fill="#ffb07a" />
+        <circle cx="25.6" cy="-2.6" r=".9" fill="#ff8a52" />
         <path d="M16.2 7.1Q24 9.9 31.8 7.1" fill="none" stroke="#ffe0cd" strokeWidth="2.3" strokeLinecap="round" />
         <circle cx="24" cy="-12.3" r="3" fill="#fff2ea" />
+        <circle cx="24.9" cy="-11.5" r="1.6" fill="#ffd2b8" fillOpacity=".8" />
+        <circle cx="23" cy="-13.3" r=".9" fill="#fff" />
       </g>
-      <ellipse cx="17.2" cy="12.6" rx="6.6" ry="3.6" fill="#fff" fillOpacity=".3" transform="rotate(-24 17.2 12.6)" />
       <ellipse cx="11.6" cy="31.4" rx="2.9" ry="1.7" fill="#c42f00" fillOpacity=".32" />
       <ellipse cx="36.4" cy="31.4" rx="2.9" ry="1.7" fill="#c42f00" fillOpacity=".32" />
       <rect x="15" y="19.6" width="5.2" height="10.8" rx="2.6" fill={C.ink} />
       <rect x="27.8" y="19.6" width="5.2" height="10.8" rx="2.6" fill={C.ink} />
       <circle cx="16.8" cy="21.9" r="1.15" fill="#fff" />
       <circle cx="29.6" cy="21.9" r="1.15" fill="#fff" />
+      <circle cx="18.6" cy="28" r=".5" fill="#fff" fillOpacity=".55" />
+      <circle cx="31.4" cy="28" r=".5" fill="#fff" fillOpacity=".55" />
       <path d="M20.4 34.6Q24 37.6 27.6 34.6" fill="none" stroke={C.ink} strokeWidth="1.9" strokeLinecap="round" />
+      {blower && (
+        <g transform="translate(25.4 35.7) rotate(14)">
+          <rect x="-1.4" y="-1.35" width="3.2" height="2.7" rx="1.1" fill={C.ink} />
+          <rect x="1.4" y="-1.5" width="17" height="3" rx="1.5" fill={C.ink} />
+          {[3.2, 6.4, 9.6, 12.8, 16].map((x) => (
+            <rect key={x} x={x} y="-1.5" width="1.5" height="3" fill="#fff2ea" />
+          ))}
+          <path d="M18.2 -1.5L21.8 -3.3V3.3L18.2 1.5Z" fill="#ffe0cd" />
+        </g>
+      )}
     </svg>
   );
 }
 
 /**
  * The share card for Open Graph and Twitter: localized headline on deep green,
- * the hero photo in a rounded frame, and the product's ask bar floating over it.
+ * the hero photo in a rounded frame, the product's ask bar floating over it,
+ * and Boron (party hat on, blower out) perched on the bar.
  */
 export async function renderSocialCard(t: Dictionary, host: string) {
   const a = await assets();
@@ -172,6 +205,11 @@ export async function renderSocialCard(t: Dictionary, host: string) {
             />
           </div>
 
+          {/* Boron, party-ready, perched on the ask bar */}
+          <div style={{ position: "absolute", right: 58, bottom: 244, display: "flex" }}>
+            <BoronStill size={178} blower />
+          </div>
+
           <div
             style={{
               position: "absolute",
@@ -199,7 +237,7 @@ export async function renderSocialCard(t: Dictionary, host: string) {
                 fontWeight: 600,
               }}
             >
-              <BoronStill />
+              <BoronStill size={40} />
               <span style={{ display: "flex", flex: 1 }}>{t.hero.queries[0]}</span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 20, padding: "14px 10px 4px", fontSize: 18 }}>
