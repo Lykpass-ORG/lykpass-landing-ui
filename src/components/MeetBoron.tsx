@@ -6,11 +6,12 @@ import { useI18n } from "@/i18n/I18nProvider";
 
 const skillIcons = [SearchCheck, MessageCircleQuestion, Ticket, LayoutDashboard];
 // Where each speech bubble floats around Boron on larger screens.
+// Kept clear of the party hat (top centre) and the blower (right of the mouth).
 const bubbleSpots = [
-  "left-[6%] top-[14%]",
-  "right-[5%] top-[24%]",
-  "left-[4%] bottom-[22%]",
-  "right-[7%] bottom-[12%]",
+  "left-[3%] top-[21%]",
+  "right-[4%] top-[14%]",
+  "left-[3%] bottom-[16%]",
+  "right-[4%] bottom-[7%]",
 ];
 
 /** Boron is element 5: five electrons on two tilted orbits frame the character. */
@@ -48,20 +49,21 @@ export function MeetBoron() {
         <div className="on-ink relative min-w-0" data-reveal>
           <div className="relative mx-auto aspect-square w-full max-w-[34rem] overflow-hidden rounded-[var(--radius-panel)] bg-night shadow-lift ring-1 ring-white/5">
             <Orbits />
-            <div className="absolute inset-0 grid place-items-center">
+            {/* Nudged down so the party hat, which rises above the head, keeps its headroom. */}
+            <div className="absolute inset-0 grid place-items-center pt-[12%]">
               <Boron
-                size={196}
+                size={250}
                 track
                 grounded
                 title={b.label}
-                className="drop-shadow-[0_22px_36px_rgba(255,87,9,0.3)] sm:h-[232px] sm:w-[232px]"
+                className="h-[min(64vw,310px)] w-[min(64vw,310px)] drop-shadow-[0_26px_42px_rgba(255,87,9,0.32)]"
               />
             </div>
             {/* Floating requests (larger screens) */}
             {b.bubbles.map((text, i) => (
               <p
                 key={text}
-                className={`bubble-float absolute hidden max-w-[13rem] rounded-[18px] bg-white/10 px-3.5 py-2 text-[0.85rem] font-medium leading-snug text-white ring-1 ring-white/15 sm:block ${bubbleSpots[i] ?? ""}`}
+                className={`bubble-float absolute hidden max-w-[11.5rem] rounded-[18px] bg-white/10 px-3.5 py-2 text-[0.85rem] font-medium leading-snug text-white ring-1 ring-white/15 sm:block ${bubbleSpots[i] ?? ""}`}
                 style={{ animationDelay: `${i * -1.4}s` }}
               >
                 {text}
