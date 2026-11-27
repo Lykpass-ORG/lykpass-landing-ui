@@ -47,7 +47,7 @@ export function WaitlistForm({ withRole = false, className = "" }: Props) {
       {withRole && (
         <fieldset className="mb-4">
           <legend className="sr-only">{t.form.roleLegend}</legend>
-          <div className="inline-flex max-w-full flex-wrap rounded-full bg-white/10 p-1 ring-1 ring-white/15">
+          <div className="inline-flex max-w-full flex-wrap rounded-full bg-white/10 p-1">
             {(
               [
                 ["attendee", t.form.roleAttendee],
@@ -75,9 +75,7 @@ export function WaitlistForm({ withRole = false, className = "" }: Props) {
         </fieldset>
       )}
       <div
-        className={`flex w-full min-w-0 max-w-[34rem] items-center gap-1.5 rounded-full bg-surface p-1.5 shadow-lift ring-1 transition-[box-shadow] duration-300 ease-[var(--ease-out-expo)] has-[input:focus]:ring-[3px] has-[input:focus]:ring-brand/70 ${
-          state.status === "error" ? "ring-2 ring-brand" : "ring-white/15"
-        }`}
+        className="flex w-full min-w-0 max-w-[34rem] items-center gap-1.5 rounded-full bg-surface p-1.5 shadow-lift"
       >
         <label htmlFor={`${id}-email`} className="sr-only">
           {t.form.email}
@@ -93,7 +91,7 @@ export function WaitlistForm({ withRole = false, className = "" }: Props) {
           placeholder={t.form.placeholder}
           aria-invalid={state.status === "error"}
           aria-describedby={msgId}
-          className="w-0 min-w-0 flex-1 bg-transparent px-3 py-3 text-[1rem] text-ink placeholder:text-mute focus:outline-none focus-visible:outline-none sm:px-4"
+          className="field-bare w-0 min-w-0 flex-1 bg-transparent px-3 py-3 text-[1rem] text-ink placeholder:text-mute sm:px-4"
         />
         <button
           type="submit"

@@ -251,3 +251,24 @@ a {
     animation: none;
   }
 }
+
+/*
+  The waitlist email field sits inside its own rounded pill, so it draws no outline,
+  ring or border of its own in any state; the blinking caret marks focus.
+  Unlayered on purpose so no base or utility focus style can bring one back.
+*/
+.field-bare,
+.field-bare:focus,
+.field-bare:focus-visible {
+  outline: none;
+  border: 0;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+/* Keep the pill's colors when the browser autofills the address. */
+.field-bare:-webkit-autofill {
+  -webkit-text-fill-color: var(--ink);
+  box-shadow: 0 0 0 1000px var(--surface) inset;
+  transition: background-color 9999s ease-out;
+}
